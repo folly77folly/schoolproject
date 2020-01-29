@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{% static 'schoolsoft/schoolstyle.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="head">List of all sudents</h1>
+    {% if studentlist %}
+    <table border="1" class="table">
+        <thead>
+            <th>Fullname Name</th>
+            <th>Date of Birth</th>
+            <th>C.G.P.A</th>
+            <th>view</th>
+        </thead>
+        {% for student in studentlist %}          
+        <tr>
+        <td>{{ student.surname }} {{ student.firstname }}</td>
+        <td>{{ student.dob }}</td>
+        <td>{{ student.cgpa }}</td>
+        <td><a href="{% url 'sch:detail' student.id %}">view details</a></td>
+        <!-- <td><a href="students/{{ student.id }}">view details</a></td> -->
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% if studentrecord %}
+    <h1>Details of {{ studentrecord.surname }} {{ studentrecord.firstname }}</h1>
+    <table border="1">
+        <thead>
+            <th>Fullname Name</th>
+            <th>Date of Birth</th>
+            <th>C.G.P.A</th>
+        </thead>       
+        <tr>
+        <td>{{ studentrecord.surname }} {{ studentrecord.firstname }}</td>
+        <td>{{ studentrecord.dob }}</td>
+        <td>{{ studentrecord.cgpa }}</td>
+        </tr>
+    </table>
+    <form action="{% url 'sch:updatecgpa' studentrecord.id %}" method="post">
+        {% csrf_token %}
+        <input type="text" name='cgpa'>
+        <input type="submit">
+        
+    </form>
+    {% endif %}
+</body>
+</html>
